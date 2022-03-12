@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:columnCount="4"
+
+        android:rowCount="5">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnclear"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:fontFamily="@font/helva"
+            android:text="AC"
+            android:textColor="#000"
+            android:textSize="24sp"
+            app:backgroundTint="#a5a5a5"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnfactorial"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="+/-"
+            android:textColor="#000"
+            android:textSize="24sp"
+            app:backgroundTint="#a5a5a5"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnpercent"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="%"
+            android:textColor="#000"
+            android:textSize="30sp"
+            app:backgroundTint="#a5a5a5"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btndivide"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="÷"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#ff9500"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn7"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:fontFamily="@font/helva"
+            android:text="7"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn8"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="8"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn9"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="9"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnmultiply"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="×"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#ff9500"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn4"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:fontFamily="@font/helva"
+            android:text="4"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn5"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="5"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn6"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="6"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnminus"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="-"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#ff9500"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn1"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:fontFamily="@font/helva"
+            android:text="1"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn2"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="2"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn3"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="3"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnplus"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="+"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#ff9500"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn0"
+            android:layout_width="153dp"
+            android:layout_height="80dp"
+            android:layout_columnSpan="2"
+            android:fontFamily="@font/helva"
+            android:text="0"
+            android:textAlignment="textStart"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btncomma"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text=","
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#333"
+            app:cornerRadius="40dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnequal"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_row="0"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/helva"
+            android:text="="
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:backgroundTint="#ff9500"
+            app:cornerRadius="40dp" />
+
+
+    </GridLayout>
+
+</RelativeLayout>
