@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     Button btncomma, btnequal, btnplus, btnminus, btnmultiply, btndivide, btnpercent, btnfactorial, btnclear;
     TextView outputTx, inputTx;
     String input;
+    double lastResult;
+    boolean isResultDisplayed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private void setNumberButtonListeners() {
         View.OnClickListener numberClickListener = view -> {
             Button button = (Button) view;
+            if (isResultDisplayed) {
+                inputTx.setText("");
+                isResultDisplayed = false;
+            }
             input = inputTx.getText().toString();
             inputTx.setText(input + button.getText().toString());
         };
@@ -39,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         btnclear.setOnClickListener(view -> {
             inputTx.setText("");
             outputTx.setText("");
+            lastResult = 0;
+            isResultDisplayed = false;
         });
 
         btncomma.setOnClickListener(view -> appendOperator("."));
@@ -53,10 +61,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void appendOperator(String operator) {
-        input = inputTx.getText().toString();
-        if (!input.endsWith("+") && !input.endsWith("-") && !input.endsWith("×") && !input.endsWith("÷") && !input.endsWith("%") && !input.endsWith("!") && !input.endsWith(".")) {
-            inputTx.setText(input + operator);
+        if (isResultDisplayed) {
+            inputTx.setText(String.valueOf(lastResult));
+            isResultDisplayed = false;
         }
+        input = inputTx.getText().toString();
+        inputTx.setText(input + operator);
     }
 
     private void calculateResult() {
@@ -64,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         input = input.replaceAll("×", "*");
         input = input.replaceAll("%", "/100");
         input = input.replaceAll("÷", "/");
+        input = input.replaceAll("x", "*");
+
 
         Context rhinos = Context.enter();
         rhinos.setOptimizationLevel(-1);
@@ -74,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
             Object result = rhinos.evaluateString(scriptable, input, "javascript", 2, null);
             double doubleResult = Double.parseDouble(result.toString());
 
+            lastResult = doubleResult;
+            isResultDisplayed = true;
+
             if (doubleResult == Math.floor(doubleResult)) {
                 finalResult = String.valueOf((int) doubleResult);
             } else {
@@ -81,8 +96,11 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             finalResult = "Error";
+            lastResult = 0;
+            isResultDisplayed = false;
         } finally {
             Context.exit();
+            inputTx.setText(""); // Clear the input display
         }
 
         outputTx.setText(finalResult);
@@ -108,5 +126,8 @@ public class MainActivity extends AppCompatActivity {
         btncomma = findViewById(R.id.btncomma);
         btnequal = findViewById(R.id.btnequal);
         btnpercent = findViewById(R.id.btnpercent);
+
+        lastResult = 0;
+        isResultDisplayed = false;
     }
 }
