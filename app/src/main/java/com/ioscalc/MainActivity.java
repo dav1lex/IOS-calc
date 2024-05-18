@@ -1,198 +1,104 @@
 package com.ioscalc;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0,
-            btncomma, btnequal, btnplus, btnminus, btnmultiply, btndivide, btnpercent, btnfactorial, btnclear;
+    Button[] numberButtons;
+    Button btncomma, btnequal, btnplus, btnminus, btnmultiply, btndivide, btnpercent, btnfactorial, btnclear;
     TextView outputTx, inputTx;
-    String input, abc;
-
+    String input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calculator);
         initialize();
-        buttoncontrol();
-
-
+        setNumberButtonListeners();
+        setOperatorButtonListeners();
     }
 
-    private void buttoncontrol() {
+    private void setNumberButtonListeners() {
+        View.OnClickListener numberClickListener = view -> {
+            Button button = (Button) view;
+            input = inputTx.getText().toString();
+            inputTx.setText(input + button.getText().toString());
+        };
+        for (Button button : numberButtons) {
+            button.setOnClickListener(numberClickListener);
+        }
+    }
 
-        btn1.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "1");
-        });
-        btn2.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "2");
-        });
-        btn3.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "3");
-        });
-        btn4.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "4");
-        });
-        btn5.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "5");
-        });
-        btn6.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "6");
-        });
-        btn7.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "7");
-        });
-        btn8.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "8");
-        });
-        btn9.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "9");
-        });
-        btn0.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            inputTx.setText(input + "0");
-        });
-
+    private void setOperatorButtonListeners() {
         btnclear.setOnClickListener(view -> {
-
             inputTx.setText("");
             outputTx.setText("");
         });
-        btncomma.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            if (input.endsWith("+") || input.endsWith("-") || input.endsWith("×") || input.endsWith("÷") || input.endsWith("%") || input.endsWith("!") || input.endsWith(".")) {
-                System.out.println("bum");
 
-            } else
-                inputTx.setText(input + ".");
-        });
+        btncomma.setOnClickListener(view -> appendOperator("."));
+        btnpercent.setOnClickListener(view -> appendOperator("%"));
+        btnfactorial.setOnClickListener(view -> appendOperator("!"));
+        btnplus.setOnClickListener(view -> appendOperator("+"));
+        btnminus.setOnClickListener(view -> appendOperator("-"));
+        btnmultiply.setOnClickListener(view -> appendOperator("×"));
+        btndivide.setOnClickListener(view -> appendOperator("÷"));
 
-        btnpercent.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            if (input.endsWith("+") || input.endsWith("-") || input.endsWith("×") || input.endsWith("÷") || input.endsWith("%") || input.endsWith("!") || input.endsWith(".")) {
-
-            } else
-                inputTx.setText(input + "%");
-        });
-        btnfactorial.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-
-            if (input.endsWith("+") || input.endsWith("-") || input.endsWith("×") || input.endsWith("÷") || input.endsWith("%") || input.endsWith("!") || input.endsWith(".")) {
-                System.out.println("baba");
-            } else
-                inputTx.setText(input + "!");
-
-
-        });
-        btnplus.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-
-            if (input.endsWith("+") || input.endsWith("-") || input.endsWith("×") || input.endsWith("÷") || input.endsWith("%") || input.endsWith("!") || input.endsWith(".")) {
-                System.out.println("baba");
-            } else
-                inputTx.setText(input + "+");
-
-        });
-        btnmultiply.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            if (input.endsWith("+") || input.endsWith("-") || input.endsWith("×") || input.endsWith("÷") || input.endsWith("%") || input.endsWith("!") || input.endsWith(".")) {
-                System.out.println("baba");
-            } else
-                inputTx.setText(input + "×");
-        });
-        btndivide.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            if (input.endsWith("+") || input.endsWith("-") || input.endsWith("×") || input.endsWith("÷") || input.endsWith("%") || input.endsWith("!") || input.endsWith(".")) {
-                System.out.println("baba");
-            } else
-                inputTx.setText(input + "÷");
-        });
-        btnminus.setOnClickListener(view -> {
-            input = inputTx.getText().toString();
-            if (input.endsWith("+") || input.endsWith("-") || input.endsWith("×") || input.endsWith("%") || input.endsWith("÷") || input.endsWith("!") || input.endsWith(".")) {
-                System.out.println("bum");
-            } else
-                inputTx.setText(input + "-");
-        });
-
-
-        btnequal.setOnClickListener(view -> {
-
-            input = inputTx.getText().toString();
-            input = input.replaceAll("×", "*");
-            input = input.replaceAll("%", "/100");
-            input = input.replaceAll("÷", "/");
-
-
-            Context rhinos = Context.enter();
-
-            rhinos.setOptimizationLevel(-1);
-            String finalResult = "";
-
-            try {
-
-                Scriptable scriptable = rhinos.initStandardObjects();
-                finalResult =
-                        rhinos.evaluateString(scriptable, input,
-                                "javascript", 2,
-                                null).toString();
-
-
-            } catch (Exception a) {
-                finalResult = "0";
-            }
-
-            StringBuilder yenitext = new StringBuilder(finalResult);
-
-            if (yenitext.charAt(yenitext.length() - 1) == '0') {
-//                yenitext.replace(0,yenitext.length()-1,"a");
-                outputTx.setText(yenitext);
-            } else {
-                outputTx.setText(yenitext);
-
-            }
-//            yenitext.subSequence(0, yenitext.length()-4);
-
-        });
-
-
+        btnequal.setOnClickListener(view -> calculateResult());
     }
 
+    private void appendOperator(String operator) {
+        input = inputTx.getText().toString();
+        if (!input.endsWith("+") && !input.endsWith("-") && !input.endsWith("×") && !input.endsWith("÷") && !input.endsWith("%") && !input.endsWith("!") && !input.endsWith(".")) {
+            inputTx.setText(input + operator);
+        }
+    }
+
+    private void calculateResult() {
+        input = inputTx.getText().toString();
+        input = input.replaceAll("×", "*");
+        input = input.replaceAll("%", "/100");
+        input = input.replaceAll("÷", "/");
+
+        Context rhinos = Context.enter();
+        rhinos.setOptimizationLevel(-1);
+
+        String finalResult;
+        try {
+            Scriptable scriptable = rhinos.initStandardObjects();
+            Object result = rhinos.evaluateString(scriptable, input, "javascript", 2, null);
+            double doubleResult = Double.parseDouble(result.toString());
+
+            if (doubleResult == Math.floor(doubleResult)) {
+                finalResult = String.valueOf((int) doubleResult);
+            } else {
+                finalResult = String.valueOf(doubleResult);
+            }
+        } catch (Exception e) {
+            finalResult = "Error";
+        } finally {
+            Context.exit();
+        }
+
+        outputTx.setText(finalResult);
+    }
 
     private void initialize() {
-
         inputTx = findViewById(R.id.inputtx);
         outputTx = findViewById(R.id.outputtx);
-        btn1 = findViewById(R.id.btn1);
-        btn2 = findViewById(R.id.btn2);
-        btn3 = findViewById(R.id.btn3);
-        btn4 = findViewById(R.id.btn4);
-        btn5 = findViewById(R.id.btn5);
-        btn6 = findViewById(R.id.btn6);
-        btn7 = findViewById(R.id.btn7);
-        btn8 = findViewById(R.id.btn8);
-        btn9 = findViewById(R.id.btn9);
-        btn0 = findViewById(R.id.btn0);
+
+        numberButtons = new Button[]{
+                findViewById(R.id.btn0), findViewById(R.id.btn1), findViewById(R.id.btn2),
+                findViewById(R.id.btn3), findViewById(R.id.btn4), findViewById(R.id.btn5),
+                findViewById(R.id.btn6), findViewById(R.id.btn7), findViewById(R.id.btn8),
+                findViewById(R.id.btn9)
+        };
+
         btnclear = findViewById(R.id.btnclear);
         btnfactorial = findViewById(R.id.btnfactorial);
         btnminus = findViewById(R.id.btnminus);
@@ -202,8 +108,5 @@ public class MainActivity extends AppCompatActivity {
         btncomma = findViewById(R.id.btncomma);
         btnequal = findViewById(R.id.btnequal);
         btnpercent = findViewById(R.id.btnpercent);
-
     }
-
-
 }
